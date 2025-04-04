@@ -1,6 +1,6 @@
 # Skyfall
 
-*By Jssateb Hackwell*
+* Jssateb Hackwell*
 
 ## Overview
 
