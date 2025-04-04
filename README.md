@@ -4,7 +4,9 @@
 
 ## Overview
 
-Skyfall is a powerful tool that converts point cloud data into coherent 3D meshes using the Marching Cubes algorithm. It handles various point cloud formats regardless of capture method (LiDAR, photogrammetry, 3D Gaussian Splatting, etc.).
+Skyfall is a powerful tool that converts point cloud data into coherent 3D meshes using the **Marching Cubes algorithm**. It handles various point cloud formats regardless of capture method (LiDAR, photogrammetry, 3D Gaussian Splatting, etc.).
+
+Our method bypasses the limitations of traditional surface reconstruction techniques such as Poisson reconstruction, Ball Pivoting, and Delaunay triangulation, offering a more robust and efficient approach tailored to the nature of our data. While Poisson reconstruction is known for producing smooth surfaces, it often leads to over-smoothing, which results in the loss of fine geometric details—particularly in areas with sharp features or sparse sampling. Ball Pivoting, although intuitive and suitable for dense point clouds, is highly sensitive to noise and requires carefully tuned parameters like ball radius to produce accurate surfaces. Additionally, it may struggle to generate watertight meshes in cases of uneven sampling. Delaunay triangulation, on the other hand, tends to produce poorly shaped or non-manifold triangles when applied to irregular or noisy datasets, which can compromise mesh quality and usability in downstream applications. In contrast, our method is designed to be resilient to noise, preserves detailed features, and generates high-quality, manifold meshes efficiently, making it suitable for a wider range of practical applications
 
 ## Workflow
 
