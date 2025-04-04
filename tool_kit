@@ -9,22 +9,22 @@
 ### Required Packages
 Install the necessary dependencies with the following command:
 
-```bash
+
 pip install numpy open3d scikit-image scipy
-```
+
 
 ### Verify Installation
 To verify that all packages are correctly installed, you can run:
 
-```bash
+
 python -c "import numpy; import open3d; import skimage; import scipy; print('All dependencies installed successfully!')"
-```
+
 
 ## Usage
 
-```bash
-python god.py
-```
+
+mesh_generation.py
+
 
 When prompted, enter the path to your point cloud file (.ply, .pcd, etc.).
 
@@ -87,30 +87,30 @@ The Skyfall tool can be fine-tuned by adjusting several key parameters in the `p
 ## Example Scenarios
 
 ### High-Quality Scan (LiDAR or Photogrammetry)
-```python
+
 voxel_size = 0.05
 downsample_voxel_size = 0.25
 iso_level_percentile = 15
 # Statistical outlier parameters
 nb_neighbors = 50
 std_ratio = 0.5
-```
+
 
 ### Noisy or Sparse Point Cloud
-```python
+
 voxel_size = 0.15
 downsample_voxel_size = 0.75
 iso_level_percentile = 35
 # Statistical outlier parameters
 nb_neighbors = 100
 std_ratio = 0.3
-```
+
 
 ### Limited System Resources
-```python
+
 voxel_size = 0.25
 downsample_voxel_size = 1.0
 iso_level_percentile = 20
 max_grid_size = 300
 # Second downsampling will kick in automatically
-```
+
