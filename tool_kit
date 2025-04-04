@@ -1,116 +1,114 @@
-# Skyfall: Installation and Fine-Tuning Guide
+# ****Skyfall: Installation and Fine-Tuning Guide****
 
-## Installation
+## ****Installation****
 
 ### Prerequisites
-- Python 3.6 or higher
+- Python 3.6 or higher  
 - pip package manager
 
 ### Required Packages
-Install the necessary dependencies with the following command:
-
+Install the necessary dependencies:
 
 pip install numpy open3d scikit-image scipy
 
-
 ### Verify Installation
-To verify that all packages are correctly installed, you can run:
-
+To check that all packages are installed:
 
 python -c "import numpy; import open3d; import skimage; import scipy; print('All dependencies installed successfully!')"
 
+---
 
-## Usage
+## ****Usage****
 
+Run the script:
 
-mesh_generation.py
+python mesh_generation.py
 
+You will be prompted to enter the path to your point cloud file (.ply, .pcd, etc.).
 
-When prompted, enter the path to your point cloud file (.ply, .pcd, etc.).
+---
 
-## Fine-Tuning Parameters
+## ****Fine-Tuning Parameters****
 
-The Skyfall tool can be fine-tuned by adjusting several key parameters in the `point_cloud_to_mesh` function:
+Adjust the parameters inside the `point_cloud_to_mesh` function for optimal results.
 
 ### Core Parameters
 
-1. **`voxel_size`** (default: 0.1)
-   - Controls the resolution of the 3D grid
-   - Smaller values create more detailed meshes but increase processing time
-   - Increase this value for faster processing or when working with large point clouds
-   - Recommended range: 0.01 - 0.5 depending on point cloud density
+**`voxel_size`** (default: `0.1`)  
+- Controls 3D grid resolution  
+- Smaller = higher detail, slower  
+- Larger = faster, less detail  
+- Recommended range: `0.01 - 0.5`
 
-2. **`iso_level_percentile`** (default: 20)
-   - Determines how closely the mesh follows the point cloud
-   - Lower values (5-15) create tighter meshes that follow the points more closely
-   - Higher values (25-50) create smoother meshes that may fill small holes
-   - Adjust based on your point cloud quality and desired outcome
+**`iso_level_percentile`** (default: `20`)  
+- Determines how tightly the mesh fits the point cloud  
+- Lower values (5–15): tighter mesh  
+- Higher values (25–50): smoother mesh
+
+---
 
 ### Preprocessing Parameters
 
-3. **`downsample_voxel_size`** (default: 0.5)
-   - Controls initial point cloud simplification
-   - Decrease for denser point representation (but slower processing)
-   - Increase for faster processing on very large point clouds
+**`downsample_voxel_size`** (default: `0.5`)  
+- Simplifies the input point cloud  
+- Lower = more detail  
+- Higher = faster processing
 
-4. **Statistical Outlier Removal**
-   - `nb_neighbors` (default: 50): Number of neighbors to consider
-   - `std_ratio` (default: 0.5): Standard deviation threshold
-   - Increase `std_ratio` to keep more points, decrease to remove more outliers
+**Statistical Outlier Removal**  
+- `nb_neighbors` (default: `50`)  
+- `std_ratio` (default: `0.5`)  
+  - Lower `std_ratio` removes more noise  
+  - Higher keeps more points
 
-5. **`max_grid_size`** (default: 500)
-   - Limits grid dimensions to avoid memory issues
-   - Increase on systems with more RAM (8GB+ recommended for values above 500)
-   - Decrease on systems with limited memory
+**`max_grid_size`** (default: `500`)  
+- Controls voxel grid memory size  
+- Increase for high RAM machines  
+- Decrease for limited hardware
 
-## Optimization Tips
+---
 
-1. **For Large Point Clouds**
-   - Increase `downsample_voxel_size` (e.g., 1.0 or higher)
-   - Increase `voxel_size` (e.g., 0.2 or higher)
-   - Decrease `max_grid_size` if memory errors occur
+## ****Optimization Tips****
 
-2. **For Detailed Results**
-   - Decrease `voxel_size` (e.g., 0.05 or lower)
-   - Decrease `downsample_voxel_size` (e.g., 0.2 or lower)
-   - Adjust `iso_level_percentile` to 10-15
+### For Large Point Clouds
+- Increase `downsample_voxel_size` (e.g., `1.0`)  
+- Increase `voxel_size` (e.g., `0.2`)  
+- Decrease `max_grid_size` if running out of memory
 
-3. **For Noisy Point Clouds**
-   - Decrease `std_ratio` in outlier removal (e.g., 0.3)
-   - Increase `nb_neighbors` in outlier removal (e.g., 100)
-   - Increase `iso_level_percentile` (e.g., 30-40)
+### For Detailed Results
+- Lower `voxel_size` (e.g., `0.05`)  
+- Lower `downsample_voxel_size` (e.g., `0.2`)  
+- Set `iso_level_percentile` to `10–15`
 
-4. **Memory Management**
-   - If you encounter memory errors, increase `voxel_size`
-   - The code automatically adjusts `voxel_size` based on point cloud dimensions, but you may need to manually adjust it for extremely large point clouds
+### For Noisy Clouds
+- Decrease `std_ratio` (e.g., `0.3`)  
+- Increase `nb_neighbors` (e.g., `100`)  
+- Increase `iso_level_percentile` (e.g., `30–40`)
 
-## Example Scenarios
+### For Low Memory Systems
+- Increase `voxel_size`  
+- Decrease `max_grid_size`  
+- Skyfall auto-adjusts based on dimensions
 
-### High-Quality Scan (LiDAR or Photogrammetry)
+---
 
-voxel_size = 0.05
-downsample_voxel_size = 0.25
-iso_level_percentile = 15
-# Statistical outlier parameters
-nb_neighbors = 50
+## ****Example Configurations****
+
+### High-Quality LiDAR / Photogrammetry
+voxel_size = 0.05  
+downsample_voxel_size = 0.25  
+iso_level_percentile = 15  
+nb_neighbors = 50  
 std_ratio = 0.5
 
-
 ### Noisy or Sparse Point Cloud
-
-voxel_size = 0.15
-downsample_voxel_size = 0.75
-iso_level_percentile = 35
-# Statistical outlier parameters
-nb_neighbors = 100
+voxel_size = 0.15  
+downsample_voxel_size = 0.75  
+iso_level_percentile = 35  
+nb_neighbors = 100  
 std_ratio = 0.3
 
-
-### Limited System Resources
-
-voxel_size = 0.25
-downsample_voxel_size = 1.0
-iso_level_percentile = 20
+### Low-End Hardware
+voxel_size = 0.25  
+downsample_voxel_size = 1.0  
+iso_level_percentile = 20  
 max_grid_size = 300
-# Second downsampling will kick in automatically
-
