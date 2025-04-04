@@ -1,1 +1,25 @@
 
+Team Name : SKYFALL
+
+Problem Statement Title : Conversion of Point Cloud data to 3D mesh
+
+College Name : PES UNIVERSITY
+
+
+TEAM MEMBERS:
+
+Sumeet Tummaramatti
+9113957487
+sumeettummarmatti@gmail.com
+
+Siddhartha Kumar
+9663342909
+siddharthakumar1511@gmail.com
+
+Shrujanna M
+6366966066
+shrujanna.05@gmail.com
+
+Spurthi Raghothama
+9611530004
+spurthi.raghothama23@gmail.com
