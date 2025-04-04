@@ -1,6 +1,6 @@
 # Skyfall
 
-* Jssateb Hackwell*
+* Jssateb Hackwell
 
 ## Overview
 
