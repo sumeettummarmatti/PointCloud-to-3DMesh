@@ -65,6 +65,11 @@ The algorithm converts a scalar field (distance values) into a triangle mesh by:
 
 ---
 
+## **Touchdesigner viewer**
+
+The mesh can be sent into touchdesigner to view using your hands
+2 fingers of your hands can be used in camera to rotate and scale the mesh to see its accuracy and smoothness
+
 ## 🚀 **Future Improvements**
 
 - Adaptive resolution for variable detail levels  
